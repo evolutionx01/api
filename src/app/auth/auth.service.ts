@@ -8,19 +8,19 @@ import { JwtPayload } from './interfaces/jwt-payload.interface';
 export class AuthService {
   constructor(
     private usersService: UsersService,
-    private jwtService: JwtService
+    private jwtService: JwtService,
   ) {}
 
   async validateUserByPassword(loginAttempt: LoginUserDto) {
     // This will be used for the initial login
     const userToAttempt = await this.usersService.findOneByEmail(
-      loginAttempt.email
+      loginAttempt.email,
     );
 
     if (userToAttempt) {
       const passwordFlag = await this.usersService.compareHash(
         loginAttempt.password,
-        userToAttempt.password
+        userToAttempt.password,
       );
       if (passwordFlag) {
         return this.createJwtPayload(userToAttempt);
@@ -45,7 +45,7 @@ export class AuthService {
 
   createJwtPayload(user) {
     const data: JwtPayload = {
-      email: user.email
+      email: user.email,
     };
 
     const jwt = this.jwtService.sign(data);
@@ -54,7 +54,7 @@ export class AuthService {
       expiresIn: 3600,
       token: jwt,
       success: true,
-      status_code: 200
+      statusCode: 200,
     };
   }
 }

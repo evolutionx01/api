@@ -6,9 +6,11 @@ import {
   Param,
   Patch,
   Delete,
+  UseGuards,
 } from '@nestjs/common';
 
 import { RegisterConsumerService } from './register-consumer.service';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('registerconsumer')
 export class RegisterConsumerController {
@@ -66,9 +68,25 @@ export class RegisterConsumerController {
   }
 
   @Get()
+  @UseGuards(AuthGuard())
   async getAllProducts() {
     const products = await this.registerConsumerService.getUsers();
-    return products;
+    return {
+      statusCode: 200,
+      success: true,
+      data: products,
+    };
+  }
+
+  @Get('count')
+  @UseGuards(AuthGuard())
+  async getAllProductsCount() {
+    const products = await this.registerConsumerService.getUsers();
+    return {
+      statusCode: 200,
+      success: true,
+      count: products.length,
+    };
   }
 
   @Get(':id')

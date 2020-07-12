@@ -1,5 +1,5 @@
 import { Model } from 'mongoose';
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { User } from './user.interface';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -16,11 +16,26 @@ export class UsersService {
     return await createdUser.save();
   }
 
-  async findOneByEmail(email: string): Promise<User> {
+  async findOneByEmail(email: string) {
+    // const user = await this.findOne(email);
+    // console.log(user);
     return await this.userModel.findOne({ email: email });
   }
 
   async compareHash(attempt, existingPassword): Promise<boolean> {
     return await bcrypt.compare(attempt, existingPassword);
   }
+
+  // private async findOne(email: string): Promise<User> {
+  //   let user;
+  //   try {
+  //     user = await this.userModel.findBy(email).exec();
+  //   } catch (error) {
+  //     throw new NotFoundException('Could not find user.');
+  //   }
+  //   if (!user) {
+  //     throw new NotFoundException('Could not find user.');
+  //   }
+  //   return user;
+  // }
 }

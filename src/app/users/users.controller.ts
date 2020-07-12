@@ -7,11 +7,12 @@ import { AuthGuard } from '@nestjs/passport';
 export class UsersController {
   constructor(private usersService: UsersService) {}
 
-  @Post()
+  @Post('signup')
   async addUser(
     @Body('email') appUserEmail: string,
-    @Body('password') appUserPassword: string
+    @Body('password') appUserPassword: string,
   ) {
+    const checkEmail = this.usersService.findOneByEmail(appUserEmail);
     return await this.usersService.createUser(appUserEmail, appUserPassword);
   }
 
@@ -21,7 +22,7 @@ export class UsersController {
   @UseGuards(AuthGuard())
   testAuthRoute() {
     return {
-      message: 'You did it!'
+      message: 'You did it!',
     };
   }
 }
