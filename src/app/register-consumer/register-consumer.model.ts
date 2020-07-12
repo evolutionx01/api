@@ -8,7 +8,7 @@ export const RegisterConsumerSchema = new mongoose.Schema({
   status: { type: String, required: true },
   race: { type: String, required: true },
   country: { type: String, required: false },
-  passport_no: { type: Number, required: false },
+  passport_no: { type: String, required: false },
   mobile: { type: Number, required: true },
   whatsapp: { type: Number, required: true },
   email: { type: String, required: false },
@@ -19,7 +19,8 @@ export const RegisterConsumerSchema = new mongoose.Schema({
   preffered_communication: { type: String, required: true },
   profession: { type: String, required: true },
   income_net: { type: Number, required: true },
-  spices: { type: Boolean, required: false },
+  spices: { type: String, required: false },
+  type_of_buusiness: { type: String, required: true },
 });
 
 export interface RegisterConsumer extends mongoose.Document {
@@ -31,7 +32,7 @@ export interface RegisterConsumer extends mongoose.Document {
   status: string;
   race: string;
   country: string;
-  passport_no: number;
+  passport_no: string;
   mobile: number;
   whatsapp: number;
   email: string;
@@ -42,5 +43,6 @@ export interface RegisterConsumer extends mongoose.Document {
   preffered_communication: string;
   profession: string;
   income_net: number;
-  spices: Boolean;
+  spices: string;
+  type_of_buusiness: String;
 }

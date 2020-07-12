@@ -27,7 +27,7 @@ export class RegisterConsumerController {
     @Body('status') consStatus: string,
     @Body('race') consRace: string,
     @Body('country') consCountry: string,
-    @Body('passport_no') consPassport: number,
+    @Body('passport_no') consPassport: string,
     @Body('mobile') consMobile: number,
     @Body('whatsapp') consWhatsapp: number,
     @Body('email') consEmail: string,
@@ -38,7 +38,8 @@ export class RegisterConsumerController {
     @Body('preffered_communication') consPCommunication: string,
     @Body('profession') consProfession: string,
     @Body('income_net') consIncomeNet: number,
-    @Body('spice') consSpice: boolean,
+    @Body('spices') consSpice: string,
+    @Body('type_of_buusiness') consTypeOfBus: string,
   ) {
     const generatedData = await this.registerConsumerService.insertUser(
       consName,
@@ -60,6 +61,7 @@ export class RegisterConsumerController {
       consProfession,
       consIncomeNet,
       consSpice,
+      consTypeOfBus,
     );
     return {
       success: true,
@@ -104,7 +106,7 @@ export class RegisterConsumerController {
     @Body('status') consStatus: string,
     @Body('race') consRace: string,
     @Body('country') consCountry: string,
-    @Body('passport_no') consPassport: number,
+    @Body('passport_no') consPassport: string,
     @Body('mobile') consMobile: number,
     @Body('whatsapp') consWhatsapp: number,
     @Body('email') consEmail: string,
@@ -115,7 +117,8 @@ export class RegisterConsumerController {
     @Body('preffered_communication') consPCommunication: string,
     @Body('profession') consProfession: string,
     @Body('income_net') consIncomeNet: number,
-    @Body('spice') consSpice: boolean,
+    @Body('spices') consSpice: string,
+    @Body('type_of_buusiness') consTypeOfBus: string,
   ) {
     const updatedData = await this.registerConsumerService.updateRegisteredUser(
       userId,
@@ -138,6 +141,7 @@ export class RegisterConsumerController {
       consProfession,
       consIncomeNet,
       consSpice,
+      consTypeOfBus,
     );
     return updatedData;
   }

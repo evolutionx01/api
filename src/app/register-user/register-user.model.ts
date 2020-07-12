@@ -4,7 +4,7 @@ export const RegisterUserSchema = new mongoose.Schema({
   name: { type: String, required: true },
   birth_date: { type: Number, required: true },
   birth_day: { type: String, required: true },
-  birth_time: { type: Number, required: true },
+  birth_time: { type: String, required: true },
   NRIC_new: { type: Number, required: true },
   NRIC_old: { type: Number, required: false },
   marital_status: { type: String, required: true },
@@ -67,7 +67,7 @@ export interface RegisterUser extends mongoose.Document {
   name: string;
   birth_date: number;
   birth_day: string;
-  birth_time: number;
+  birth_time: string;
   NRIC_new: number;
   NRIC_old: number;
   marital_status: string;

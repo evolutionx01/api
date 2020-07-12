@@ -19,7 +19,7 @@ export class RegisterConsumerService {
     status: string,
     race: string,
     country: string,
-    passport_no: number,
+    passport_no: string,
     mobile: number,
     whatsapp: number,
     email: string,
@@ -30,7 +30,8 @@ export class RegisterConsumerService {
     preffered_communication: string,
     profession: string,
     income_net: number,
-    spices: boolean,
+    spices: string,
+    type_of_buusiness: string,
   ) {
     const newUser = new this.userModel({
       name,
@@ -52,6 +53,7 @@ export class RegisterConsumerService {
       profession,
       income_net,
       spices,
+      type_of_buusiness,
     });
     const result = await newUser.save();
     return result;
@@ -80,6 +82,7 @@ export class RegisterConsumerService {
       profession: rdUser.profession,
       income_net: rdUser.income_net,
       spices: rdUser.spices,
+      type_of_buusiness: rdUser.type_of_buusiness,
     }));
   }
 
@@ -106,6 +109,7 @@ export class RegisterConsumerService {
       profession: registeredUser.profession,
       income_net: registeredUser.income_net,
       spices: registeredUser.spices,
+      type_of_buusiness: registeredUser.type_of_buusiness,
     };
   }
 
@@ -118,7 +122,7 @@ export class RegisterConsumerService {
     status: string,
     race: string,
     country: string,
-    passport_no: number,
+    passport_no: string,
     mobile: number,
     whatsapp: number,
     email: string,
@@ -129,7 +133,8 @@ export class RegisterConsumerService {
     preffered_communication: string,
     profession: string,
     income_net: number,
-    spices: boolean,
+    spices: string,
+    type_of_buusiness: string,
   ) {
     const updatedRegisteredUser = await this.findRegiseredUser(
       registeredUserId,
@@ -191,6 +196,9 @@ export class RegisterConsumerService {
     }
     if (spices) {
       updatedRegisteredUser.spices = spices;
+    }
+    if (type_of_buusiness) {
+      updatedRegisteredUser.type_of_buusiness = type_of_buusiness;
     }
 
     await new this.userModel(updatedRegisteredUser).save();
