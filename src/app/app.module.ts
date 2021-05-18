@@ -9,9 +9,11 @@ import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { RegisterConsumerModule } from './register-consumer/register-consumer.module';
 import { MulterModule } from '@nestjs/platform-express';
+import {AddBroadcastModule} from "./add-broadcast/add-broadcast.module";
 
 @Module({
   imports: [
+      AddBroadcastModule,
     RegisterUserModule,
     RegisterConsumerModule,
     ProductsModule,
